@@ -32,16 +32,19 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(productsICanEat.length).toBe(FILL_ME_IN);
+    expect(productsICanEat.length).toBe(1);
   });
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
 
       var productsICanEat = [];
 
+      productsICanEat= _(products).filter(function(item){
+    return item.containsNuts === false && item.ingredients.indexOf('mushrooms')=== -1;
+  });
       /* solve using filter() & all() / any() */
 
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      expect(productsICanEat.length).toBe(1);
   });
 
   /*********************************************************************************/
@@ -55,14 +58,27 @@ describe("About Applying What We Have Learnt", function() {
       }
     }
 
-    expect(sum).toBe(FILL_ME_IN);
+    expect(sum).toBe(233168);
   });
 
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
 
-    var sum = FILL_ME_IN;    /* try chaining range() and reduce() */
+    /* try chaining range() and reduce() */
+    var five = _.range(0, 1000, 5);
+  //  console.log(five);
+    var three = _.range(0,1000, 3);
+  //  console.log(three);
+    var combined = new Array(five, three);
+    //console.log(combined);
+    var flattened = _.flatten(combined);
+    //console.log(flattened);
+    var uniqed = _.uniq(flattened);
+    //console.log('right', uniqed);
+    var sum = _(uniqed).reduce(function(sum, x) {return sum +x});
+    //console.log(sum);
 
-    expect(233168).toBe(FILL_ME_IN);
+    expect(233168).toBe(sum);
+
   });
 
   /*********************************************************************************/
@@ -75,7 +91,7 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
